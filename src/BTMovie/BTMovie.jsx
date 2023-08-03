@@ -5,9 +5,9 @@ import Result from "./Result";
 
 const BTMovie = () => {
   return (
-    <div className="mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto px-4 sm:px-6 lg:px-8 helo">
       <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-2">
+        <div className="col-span-2 helo">
           <ChairList data={data}></ChairList>
         </div>
         <div className="col-span-1">

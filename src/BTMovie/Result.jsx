@@ -1,6 +1,11 @@
 import React from "react";
-import "./css/index.css";
+import "./index.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { chairBookingsAction } from "../store/BTMovie/action";
+
 const Result = () => {
+  const { chairBookings, chairBookeds } = useSelector((state) => state.btMovie);
+  const dispatch = useDispatch();
   return (
     <div>
       <h1>This is result</h1>
@@ -22,28 +27,40 @@ const Result = () => {
       </div>
 
       <div className="table">
-        <table border="1">
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>City</th>
+        <thead>
+          <tr className="grid grid-cols-3 gap-4">
+            <th className="col-span-1">Số Ghế</th>
+            <th className="col-span-1">Giá</th>
+            <th className="col-span-1">Hủy</th>
           </tr>
+        </thead>
+        <tbody>
+          {chairBookings.map((ghe) => (
+            <tr>
+              <td>{ghe.soGhe}</td>
+              <td>{ghe.gia}</td>
+              <td>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => {
+                    dispatch(chairBookingsAction(ghe));
+                  }}
+                >
+                  Hủy
+                </button>
+              </td>
+            </tr>
+          ))}
+
+          {/* Tính tổng tiền */}
           <tr>
-            <td>John</td>
-            <td>30</td>
-            <td>New York</td>
+            <td>Tổng tiền</td>
+            <td>
+              {chairBookings.reduce((total, ghe) => (total += ghe.gia), 0)}
+            </td>
+            <button className="px-3 py-1 text-black bg-yellow-400">Pay</button>
           </tr>
-          <tr>
-            <td>Jane</td>
-            <td>25</td>
-            <td>Los Angeles</td>
-          </tr>
-          <tr>
-            <td>Mike</td>
-            <td>40</td>
-            <td>Chicago</td>
-          </tr>
-        </table>
+        </tbody>
       </div>
     </div>
   );
