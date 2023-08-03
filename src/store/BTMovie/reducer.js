@@ -1,4 +1,4 @@
-import { HANDLE_CHAIR_BOOKINGS } from "./actionType";
+import { HANDLE_CHAIR_BOOKINGS, PAY } from "./actionType";
 
 const initialState = {
   chairBookings: [],
@@ -8,8 +8,6 @@ const initialState = {
 const btMovieReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case HANDLE_CHAIR_BOOKINGS:
-      console.log("CHBK: ", state.chairBookings);
-      console.log("CHBKed: ", state.chairBookeds);
       const data = [...state.chairBookings];
 
       console.log("chairBookings -data: ", data);
@@ -20,6 +18,9 @@ const btMovieReducer = (state = initialState, { type, payload }) => {
         data.splice(dataIndex, 1);
       }
       return { ...state, chairBookings: data };
+    case PAY:
+      const payData = [...state.chairBookeds, ...state.chairBookings];
+      return { ...state, chairBookeds: payData, chairBookings: [] };
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { chairBookingsAction } from "../store/BTMovie/action";
+import { chairBookingsAction, payAction } from "../store/BTMovie/action";
 
 const Result = () => {
   const { chairBookings, chairBookeds } = useSelector((state) => state.btMovie);
@@ -58,7 +58,14 @@ const Result = () => {
             <td>
               {chairBookings.reduce((total, ghe) => (total += ghe.gia), 0)}
             </td>
-            <button className="px-3 py-1 text-black bg-yellow-400">Pay</button>
+            <button
+              className="px-3 py-1 text-black bg-yellow-400"
+              onClick={() => {
+                dispatch(payAction());
+              }}
+            >
+              Pay
+            </button>
           </tr>
         </tbody>
       </div>

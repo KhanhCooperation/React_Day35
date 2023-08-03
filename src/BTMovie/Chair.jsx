@@ -12,6 +12,7 @@ const Chair = (props) => {
       key={index}
       className={cn("cursor-pointer hover:bg-gray-300 rounded", {
         onChoice: chairBookings.find((value) => value.soGhe == ghe.soGhe),
+        selected: chairBookeds.find((value) => value.soGhe == ghe.soGhe),
       })}
       style={{ width: "40px", border: "1px solid white" }}
       onClick={() => dispatch(chairBookingsAction(ghe))}
