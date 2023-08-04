@@ -1,9 +1,20 @@
-import { hover } from "@testing-library/user-event/dist/hover";
 import React from "react";
 import Chair from "./Chair";
+import { useSelector } from "react-redux";
 
 const ChairList = ({ data }) => {
-  console.log(data);
+  const { chairBookings, chairBookeds } = useSelector((state) => state.btMovie);
+
+  // useEffect(() => {
+  //   let chairBookingsData = localStorage.getItem("chairBookings")
+  //     ? JSON.parse(localStorage.getItem("chairBookings"))
+  //     : {};
+  //   console.log("chairBookingsData-useEffect:  ", chairBookingsData);
+  //   const chairBookings = [...chairBookingsData];
+  // }, []);
+
+  // console.log(data);
+
   return (
     <div>
       <h1>This is chairList</h1>
